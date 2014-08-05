@@ -27,16 +27,16 @@ import org.agd.badges.impl.SonyBadgeProvider;
 
 public class Badges {
 
-    public static void setBadge(Context context, int count) throws BadgesNotSupported {
+    public static void setBadge(Context context, int count) throws BadgesNotSupportedException {
         BadgeProvider badgeProvider = Badges.createBadgeProvider(context);
         badgeProvider.setBadge(count);
     }
 
-    public static void removeBadge(Context context) throws BadgesNotSupported {
+    public static void removeBadge(Context context) throws BadgesNotSupportedException {
         Badges.setBadge(context, 0);
     }
 
-    private static BadgeProvider createBadgeProvider(Context context) throws BadgesNotSupported {
+    private static BadgeProvider createBadgeProvider(Context context) throws BadgesNotSupportedException {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
 
@@ -53,6 +53,6 @@ public class Badges {
             return new HtcBadgeProvider(context);
         }
 
-        throw new BadgesNotSupported(homePackage);
+        throw new BadgesNotSupportedException(homePackage);
     }
 }

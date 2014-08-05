@@ -15,9 +15,9 @@
  */
 package org.agd.badges;
 
-public class BadgesNotSupported extends Exception {
+public class BadgesNotSupportedException extends Exception {
 
-    public BadgesNotSupported(String homePackage) {
+    public BadgesNotSupportedException(String homePackage) {
         super(String.format("The home launcher with package '%s' is not supported by Badges", homePackage));
     }
 }

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import org.agd.badges.Badges;
-import org.agd.badges.BadgesNotSupported;
+import org.agd.badges.BadgesNotSupportedException;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -35,8 +35,8 @@ public class MainActivity extends ActionBarActivity {
     private void updateBadge(int count) {
         try {
             Badges.setBadge(this, count);
-        } catch (BadgesNotSupported badgesNotSupported) {
-            Log.d(TAG, badgesNotSupported.getMessage());
+        } catch (BadgesNotSupportedException badgesNotSupportedException) {
+            Log.d(TAG, badgesNotSupportedException.getMessage());
         }
     }
 }
