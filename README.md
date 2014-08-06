@@ -21,9 +21,21 @@ HTC<br/>
 
 Usage
 -----------
+
 ```java
   try {
       Badges.setBadge(context, 5);
+  } catch (BadgesNotSupportedException badgesNotSupportedException) {
+      Log.d(TAG, badgesNotSupportedException.getMessage());
+  }
+```
+
+To remove the badge you can call to ```Badges.removeBadge(context)``` or set badges count to 0 with ```Badges.setBadge(context, 5);```
+```java
+  try {
+      Badges.removeBadge(context);
+      // Alternative way
+      Badges.setBadge(context, 0);
   } catch (BadgesNotSupportedException badgesNotSupportedException) {
       Log.d(TAG, badgesNotSupportedException.getMessage());
   }
