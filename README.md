@@ -41,6 +41,20 @@ To remove the badge you can call to ```Badges.removeBadge(context)``` or set bad
   }
 ```
 
+The following permissions are added to the ```AndroidManifest.xml``` of the library, Android Studio should add them to your app ```AndroidManifest.xml``` but you can prefer adding them manually to avoid possible problems:
+```xml
+    <!-- Samsung -->
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
+
+    <!-- Sony -->
+    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+
+    <!-- HTC -->
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" />
+```
+
 
 Download
 -----------
