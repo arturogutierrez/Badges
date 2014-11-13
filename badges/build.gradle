@@ -5,14 +5,9 @@ android {
     buildToolsVersion '20.0.0'
 
     defaultConfig {
-        applicationId "org.agd.badges"
         minSdkVersion 8
         targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
     }
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-}
+apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
