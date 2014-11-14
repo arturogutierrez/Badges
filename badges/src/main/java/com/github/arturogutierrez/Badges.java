@@ -16,15 +16,12 @@
 package com.github.arturogutierrez;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 
 import com.github.arturogutierrez.providers.BadgeProvider;
 import com.github.arturogutierrez.providers.BadgeProviderFactory;
 
 /**
- * Helper to set badge count on app icon on any supported launchers.
+ * Helper to set badge count on current application icon on any supported launchers.
  *
  * @author Arturo Gutiérrez Díaz-Guerra
  */
@@ -33,8 +30,8 @@ public class Badges {
     /**
      * Set badge count on app icon
      *
-     * @param context
-     * @param count should be >= 0, passing count as 0 the badge will be removed.
+     * @param context context activity
+     * @param count   should be &gt;= 0, passing count as 0 the badge will be removed.
      * @throws BadgesNotSupportedException when the current launcher is not supported by Badges
      */
     public static void setBadge(Context context, int count) throws BadgesNotSupportedException {
@@ -45,7 +42,7 @@ public class Badges {
     /**
      * Remove current badge count
      *
-     * @param context
+     * @param context context activity
      * @throws BadgesNotSupportedException when the current launcher is not supported by Badges
      */
 
