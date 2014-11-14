@@ -13,21 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agd.badges.impl;
+package com.github.arturogutierrez.providers;
 
 import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
 
-import org.agd.badges.BadgeProvider;
-
-public class HtcBadgeProvider extends BadgeProvider {
+/**
+ * BadgeProvider implementation to support badges on HTC devices.
+ *
+ * @author Arturo Gutiérrez Díaz-Guerra
+ */
+class HtcBadgeProvider extends BadgeProvider {
 
     public static final String HOME_PACKAGE = "com.htc.launcher";
 

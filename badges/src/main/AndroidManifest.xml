@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.agd.sample.sample">
+    package="com.github.arturogutierrez">
 
     <uses-sdk android:minSdkVersion="8"
-        android:targetSdkVersion="19"/>
+        android:targetSdkVersion="21"/>
 
     <!-- Samsung -->
     <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />

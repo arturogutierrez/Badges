@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.agd.sample" >
+    package="com.github.arturogutierrez.sample" >
 
     <uses-sdk android:minSdkVersion="9"
-        android:targetSdkVersion="19"/>
+        android:targetSdkVersion="21"/>
 
     <application
         android:allowBackup="true"

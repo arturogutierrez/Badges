@@ -13,27 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agd.badges.impl;
+package com.github.arturogutierrez.providers;
 
 import android.content.Context;
 import android.content.Intent;
 
-import org.agd.badges.BadgeProvider;
+/**
+ * BadgeProvider implementation to support badges on Sony devices.
+ *
+ * @author Arturo Gutiérrez Díaz-Guerra
+ */
+class SonyBadgeProvider extends BadgeProvider{
 
-public class LGBadgeProvider extends BadgeProvider {
+    public static final String HOME_PACKAGE = "com.sonyericsson.home";
 
-    public static final String HOME_PACKAGE = "com.lge.launcher2";
-
-    public LGBadgeProvider(Context context) {
+    public SonyBadgeProvider(Context context) {
         super(context);
     }
 
     @Override
     public void setBadge(int count) {
-        Intent intent = new Intent("android.intent.action.BADGE_COUNT_UPDATE");
-        intent.putExtra("badge_count_package_name", getPackageName());
-        intent.putExtra("badge_count_class_name", getMainActivityClassName());
-        intent.putExtra("badge_count", count);
+        Intent intent = new Intent();
+
+        intent.setAction("com.sonyericsson.home.action.UPDATE_BADGE");
+        intent.putExtra("com.sonyericsson.home.intent.extra.badge.PACKAGE_NAME", getPackageName());
+        intent.putExtra("com.sonyericsson.home.intent.extra.badge.ACTIVITY_NAME", getMainActivityClassName());
+        intent.putExtra("com.sonyericsson.home.intent.extra.badge.SHOW_MESSAGE", count > 0);
+        intent.putExtra("com.sonyericsson.home.intent.extra.badge.MESSAGE", String.valueOf(count));
 
         mContext.sendBroadcast(intent);
     }

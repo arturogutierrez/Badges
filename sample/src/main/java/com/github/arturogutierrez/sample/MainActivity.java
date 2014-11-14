@@ -1,4 +1,4 @@
-package org.agd.sample;
+package com.github.arturogutierrez.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -6,8 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import org.agd.badges.Badges;
-import org.agd.badges.BadgesNotSupportedException;
+import com.github.arturogutierrez.Badges;
+import com.github.arturogutierrez.BadgesNotSupportedException;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

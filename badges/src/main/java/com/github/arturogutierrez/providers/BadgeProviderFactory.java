@@ -13,30 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agd.badges;
+package com.github.arturogutierrez.providers;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 
-import org.agd.badges.impl.HtcBadgeProvider;
-import org.agd.badges.impl.LGBadgeProvider;
-import org.agd.badges.impl.SamsungBadgeProvider;
-import org.agd.badges.impl.SonyBadgeProvider;
+import com.github.arturogutierrez.BadgesNotSupportedException;
 
-public class Badges {
+/**
+ * Factory created to provide BadgeProvider implementations depending what launcher is being executed
+ *
+ * @author Arturo Gutiérrez Díaz-Guerra
+ */
+public class BadgeProviderFactory {
 
-    public static void setBadge(Context context, int count) throws BadgesNotSupportedException {
-        BadgeProvider badgeProvider = Badges.createBadgeProvider(context);
-        badgeProvider.setBadge(count);
-    }
-
-    public static void removeBadge(Context context) throws BadgesNotSupportedException {
-        Badges.setBadge(context, 0);
-    }
-
-    private static BadgeProvider createBadgeProvider(Context context) throws BadgesNotSupportedException {
+    public static BadgeProvider getBadgeProvider(Context context) throws BadgesNotSupportedException {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
 

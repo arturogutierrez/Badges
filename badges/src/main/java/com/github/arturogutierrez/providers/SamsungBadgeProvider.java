@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agd.badges.impl;
+package com.github.arturogutierrez.providers;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -21,9 +21,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
-import org.agd.badges.BadgeProvider;
-
-public class SamsungBadgeProvider extends BadgeProvider {
+/**
+ * BadgeProvider implementation to support badges on Samsung devices.
+ *
+ * @author Arturo Gutiérrez Díaz-Guerra
+ */
+class SamsungBadgeProvider extends BadgeProvider {
 
     public static final String HOME_PACKAGE = "com.sec.android.app.launcher";
 

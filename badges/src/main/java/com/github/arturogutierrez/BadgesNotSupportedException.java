@@ -13,26 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.agd.badges;
+package com.github.arturogutierrez;
 
-import android.content.Context;
+/**
+ * Exception to tell the current launcher is not supported by Badges library.
+ *
+ * @author Arturo Gutiérrez Díaz-Guerra
+ */
+public class BadgesNotSupportedException extends Exception {
 
-public abstract class BadgeProvider {
-
-    protected Context mContext;
-
-    public BadgeProvider(Context context) {
-        mContext = context;
-    }
-
-    public abstract void setBadge(int count);
-    public abstract void removeBadge();
-
-    protected String getPackageName() {
-        return mContext.getPackageName();
-    }
-
-    protected String getMainActivityClassName() {
-        return mContext.getPackageManager().getLaunchIntentForPackage(getPackageName()).getComponent().getClassName();
+    public BadgesNotSupportedException(String homePackage) {
+        super(String.format("The home launcher with package '%s' is not supported by Badges library", homePackage));
     }
 }
