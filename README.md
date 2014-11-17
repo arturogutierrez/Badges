@@ -58,8 +58,24 @@ The following permissions are added to the ```AndroidManifest.xml``` of the libr
 
 Download
 -----------
-The library will be available on Maven and Gradle repository, meanwhile you can clone the project and add it to your project as library.
+Download the project, compile it using maven or gradle or add it as dependency from maven central repository adding to your pom.xml
 
+```xml
+<dependency>
+  <groupId>com.github.arturogutierrez</groupId>
+  <artifactId>badges</artifactId>
+  <version>1.0</version>
+  <type>aar</type>
+</dependency>
+```
+
+Or into your build.gradle
+
+```groovy
+dependencies {
+    compile 'com.github.arturogutierrez:badges:1.0@aar'
+}
+```
 
 Supported Launchers
 -----------
