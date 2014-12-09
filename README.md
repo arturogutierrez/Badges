@@ -30,7 +30,7 @@ Usage
   }
 ```
 
-To remove the badge you can call to ```Badges.removeBadge(context)``` or set badges count to 0 with ```Badges.setBadge(context, 5);```
+To remove the badge you can call to ```Badges.removeBadge(context)``` or set badges count to 0 with ```Badges.setBadge(context, 0);```
 ```java
   try {
       Badges.removeBadge(context);
