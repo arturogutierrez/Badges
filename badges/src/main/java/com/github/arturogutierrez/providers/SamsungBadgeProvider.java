@@ -45,7 +45,7 @@ class SamsungBadgeProvider extends BadgeProvider {
         ContentResolver contentResolver = mContext.getContentResolver();
         Cursor cursor = contentResolver.query(CONTENT_URI, new String[]{COLUMN_ID}, COLUMN_PACKAGE + "=?", new String[]{getPackageName()}, null);
 
-        if (!cursor.moveToFirst()) {
+        if (cursor == null || !cursor.moveToFirst()) {
             ContentValues contentValues = new ContentValues();
             contentValues.put(COLUMN_PACKAGE, getPackageName());
             contentValues.put(COLUMN_CLASS, getMainActivityClassName());
