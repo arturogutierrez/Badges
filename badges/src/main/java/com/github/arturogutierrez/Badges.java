@@ -36,7 +36,15 @@ public class Badges {
      */
     public static void setBadge(Context context, int count) throws BadgesNotSupportedException {
         BadgeProvider badgeProvider = BadgeProviderFactory.getBadgeProvider(context);
-        badgeProvider.setBadge(count);
+        try {
+            badgeProvider.setBadge(count);
+        } catch(Exception e) {
+            // Updating badge is something very underdocumented and there can
+            // several edge exceptions on weird devices, this try/catch protect us
+            // from them, I know, it's not the best way to do it but I don't have
+            // many devices where test the lib :)
+            throw new BadgesNotSupportedException(e.getMessage());
+        }
     }
 
     /**
