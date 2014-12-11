@@ -38,12 +38,11 @@ public class Badges {
         BadgeProvider badgeProvider = BadgeProviderFactory.getBadgeProvider(context);
         try {
             badgeProvider.setBadge(count);
-        } catch(Exception e) {
-            // Updating badge is something very underdocumented and there can
-            // several edge exceptions on weird devices, this try/catch protect us
-            // from them, I know, it's not the best way to do it but I don't have
-            // many devices where test the lib :)
-            throw new BadgesNotSupportedException(e.getMessage());
+        } catch(SecurityException securityException) {
+            // Some Samsung devices are throwing SecurityException when trying to set the badge
+            // saying the app needs permission which are already added, this try/catch protect us
+            // from these "crappy phones" :)
+            throw new BadgesNotSupportedException(securityException.getMessage());
         }
     }
 
