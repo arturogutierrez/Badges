@@ -42,7 +42,7 @@ public class Badges {
             // Some Samsung devices are throwing SecurityException when trying to set the badge
             // saying the app needs permission which are already added, this try/catch protect us
             // from these "crappy phones" :)
-            throw new BadgesNotSupportedException(securityException.getMessage());
+            throw new BadgesNotSupportedException();
         }
     }
 

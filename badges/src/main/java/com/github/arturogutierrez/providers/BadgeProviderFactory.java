@@ -34,18 +34,22 @@ public class BadgeProviderFactory {
         intent.addCategory(Intent.CATEGORY_HOME);
 
         ResolveInfo resolveInfo = context.getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        String homePackage = resolveInfo.activityInfo.packageName;
+        if (resolveInfo != null && resolveInfo.activityInfo != null && resolveInfo.activityInfo.packageName != null) {
+            String homePackage = resolveInfo.activityInfo.packageName;
 
-        if (homePackage.equalsIgnoreCase(SamsungBadgeProvider.HOME_PACKAGE)) {
-            return new SamsungBadgeProvider(context);
-        } else if (homePackage.equalsIgnoreCase(LGBadgeProvider.HOME_PACKAGE)) {
-            return new LGBadgeProvider(context);
-        } else if (homePackage.equalsIgnoreCase(SonyBadgeProvider.HOME_PACKAGE)) {
-            return new SonyBadgeProvider(context);
-        } else if (homePackage.equalsIgnoreCase(HtcBadgeProvider.HOME_PACKAGE)) {
-            return new HtcBadgeProvider(context);
+            if (homePackage.equalsIgnoreCase(SamsungBadgeProvider.HOME_PACKAGE)) {
+                return new SamsungBadgeProvider(context);
+            } else if (homePackage.equalsIgnoreCase(LGBadgeProvider.HOME_PACKAGE)) {
+                return new LGBadgeProvider(context);
+            } else if (homePackage.equalsIgnoreCase(SonyBadgeProvider.HOME_PACKAGE)) {
+                return new SonyBadgeProvider(context);
+            } else if (homePackage.equalsIgnoreCase(HtcBadgeProvider.HOME_PACKAGE)) {
+                return new HtcBadgeProvider(context);
+            }
+
+            throw new BadgesNotSupportedException(homePackage);
         }
 
-        throw new BadgesNotSupportedException(homePackage);
+        throw new BadgesNotSupportedException();
     }
 }
