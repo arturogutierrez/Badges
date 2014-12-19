@@ -16,11 +16,10 @@
 package com.github.arturogutierrez.providers;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 
-import com.github.arturogutierrez.BadgesNotSupportedException;
+import com.github.arturogutierrez.providers.collaborators.HomePackageIdentify;
+
+import java.util.HashMap;
 
 /**
  * Factory created to provide BadgeProvider implementations depending what launcher is being executed
@@ -29,27 +28,30 @@ import com.github.arturogutierrez.BadgesNotSupportedException;
  */
 public class BadgeProviderFactory {
 
-    public static BadgeProvider getBadgeProvider(Context context) throws BadgesNotSupportedException {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
+    private Context context;
+    private HashMap<String, BadgeProvider> providers;
 
-        ResolveInfo resolveInfo = context.getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        if (resolveInfo != null && resolveInfo.activityInfo != null && resolveInfo.activityInfo.packageName != null) {
-            String homePackage = resolveInfo.activityInfo.packageName;
+    public BadgeProviderFactory(Context context) {
+        this.context = context;
+        providers = new HashMap<String, BadgeProvider>();
+        providers.put(SamsungBadgeProvider.HOME_PACKAGE, new SamsungBadgeProvider(context));
+        providers.put(LGBadgeProvider.HOME_PACKAGE, new LGBadgeProvider(context));
+        providers.put(SonyBadgeProvider.HOME_PACKAGE, new SonyBadgeProvider(context));
+        providers.put(HtcBadgeProvider.HOME_PACKAGE, new HtcBadgeProvider(context));
+    }
 
-            if (homePackage.equalsIgnoreCase(SamsungBadgeProvider.HOME_PACKAGE)) {
-                return new SamsungBadgeProvider(context);
-            } else if (homePackage.equalsIgnoreCase(LGBadgeProvider.HOME_PACKAGE)) {
-                return new LGBadgeProvider(context);
-            } else if (homePackage.equalsIgnoreCase(SonyBadgeProvider.HOME_PACKAGE)) {
-                return new SonyBadgeProvider(context);
-            } else if (homePackage.equalsIgnoreCase(HtcBadgeProvider.HOME_PACKAGE)) {
-                return new HtcBadgeProvider(context);
-            }
+    public BadgeProvider getBadgeProvider() {
+        String currentPackage = getHomePackage(context);
 
-            throw new BadgesNotSupportedException(homePackage);
+        if (providers.containsKey(currentPackage)) {
+            return providers.get(currentPackage);
         }
 
-        throw new BadgesNotSupportedException();
+        return new NullBadgeProvider();
+    }
+
+    private String getHomePackage(Context context) {
+        HomePackageIdentify identify = new HomePackageIdentify();
+        return identify.getHomePackage(context);
     }
 }

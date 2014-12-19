@@ -41,25 +41,32 @@ class SamsungBadgeProvider extends BadgeProvider {
     }
 
     @Override
-    public void setBadge(int count) {
-        ContentResolver contentResolver = mContext.getContentResolver();
-        Cursor cursor = contentResolver.query(CONTENT_URI, new String[]{COLUMN_ID}, COLUMN_PACKAGE + "=?", new String[]{getPackageName()}, null);
+    public void setBadge(int count) throws UnsupportedOperationException {
+        try {
+            ContentResolver contentResolver = mContext.getContentResolver();
+            Cursor cursor = contentResolver.query(CONTENT_URI, new String[]{COLUMN_ID}, COLUMN_PACKAGE + "=?", new String[]{getPackageName()}, null);
 
-        if (cursor == null || !cursor.moveToFirst()) {
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(COLUMN_PACKAGE, getPackageName());
-            contentValues.put(COLUMN_CLASS, getMainActivityClassName());
-            contentValues.put(COLUMN_BADGE_COUNT, count);
-            contentResolver.insert(CONTENT_URI, contentValues);
-        } else {
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(COLUMN_BADGE_COUNT, count);
-            contentResolver.update(CONTENT_URI, contentValues, COLUMN_ID + "=?", new String[]{String.valueOf(cursor.getInt(0))});
+            if (cursor == null || !cursor.moveToFirst()) {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(COLUMN_PACKAGE, getPackageName());
+                contentValues.put(COLUMN_CLASS, getMainActivityClassName());
+                contentValues.put(COLUMN_BADGE_COUNT, count);
+                contentResolver.insert(CONTENT_URI, contentValues);
+            } else {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(COLUMN_BADGE_COUNT, count);
+                contentResolver.update(CONTENT_URI, contentValues, COLUMN_ID + "=?", new String[]{String.valueOf(cursor.getInt(0))});
+            }
+        } catch (Exception e) {
+            // Some Samsung devices are throwing SecurityException or RuntimeException when
+            // trying to set the badge saying the app needs permission which are already added,
+            // this try/catch protect us from these "crappy phones" :)
+            throw new UnsupportedOperationException();
         }
     }
 
     @Override
-    public void removeBadge() {
+    public void removeBadge() throws UnsupportedOperationException {
         setBadge(0);
     }
 }
