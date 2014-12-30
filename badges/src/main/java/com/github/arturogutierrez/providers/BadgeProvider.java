@@ -17,6 +17,8 @@ package com.github.arturogutierrez.providers;
 
 import android.content.Context;
 
+import com.github.arturogutierrez.BadgesNotSupportedException;
+
 /**
  * Abstract class created to be implemented by different classes to provide badge change support on
  * different launchers.
@@ -32,8 +34,8 @@ public abstract class BadgeProvider {
         mContext = context;
     }
 
-    public abstract void setBadge(int count);
-    public abstract void removeBadge();
+    public abstract void setBadge(int count) throws UnsupportedOperationException;
+    public abstract void removeBadge() throws UnsupportedOperationException;
 
     protected String getPackageName() {
         return mContext.getPackageName();

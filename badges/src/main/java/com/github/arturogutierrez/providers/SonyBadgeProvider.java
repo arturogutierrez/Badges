@@ -23,7 +23,7 @@ import android.content.Intent;
  *
  * @author Arturo Gutiérrez Díaz-Guerra
  */
-class SonyBadgeProvider extends BadgeProvider{
+class SonyBadgeProvider extends BadgeProvider {
 
     public static final String HOME_PACKAGE = "com.sonyericsson.home";
 

@@ -35,13 +35,15 @@ public class Badges {
      * @throws BadgesNotSupportedException when the current launcher is not supported by Badges
      */
     public static void setBadge(Context context, int count) throws BadgesNotSupportedException {
-        BadgeProvider badgeProvider = BadgeProviderFactory.getBadgeProvider(context);
+        if (context == null) {
+            throw new BadgesNotSupportedException();
+        }
+
+        BadgeProviderFactory badgeFactory = new BadgeProviderFactory(context);
+        BadgeProvider badgeProvider = badgeFactory.getBadgeProvider();
         try {
             badgeProvider.setBadge(count);
-        } catch(SecurityException securityException) {
-            // Some Samsung devices are throwing SecurityException when trying to set the badge
-            // saying the app needs permission which are already added, this try/catch protect us
-            // from these "crappy phones" :)
+        } catch (UnsupportedOperationException exception) {
             throw new BadgesNotSupportedException();
         }
     }
