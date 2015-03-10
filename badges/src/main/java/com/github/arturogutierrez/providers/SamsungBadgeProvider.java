@@ -53,9 +53,11 @@ class SamsungBadgeProvider extends BadgeProvider {
                 contentValues.put(COLUMN_BADGE_COUNT, count);
                 contentResolver.insert(CONTENT_URI, contentValues);
             } else {
+                int idColumnIndex = cursor.getColumnIndex(COLUMN_ID);
+
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(COLUMN_BADGE_COUNT, count);
-                contentResolver.update(CONTENT_URI, contentValues, COLUMN_ID + "=?", new String[]{String.valueOf(cursor.getInt(0))});
+                contentResolver.update(CONTENT_URI, contentValues, COLUMN_ID + "=?", new String[]{String.valueOf(cursor.getInt(idColumnIndex))});
             }
         } catch (Exception e) {
             // Some Samsung devices are throwing SecurityException or RuntimeException when
