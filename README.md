@@ -90,7 +90,7 @@ Developed By
 
 * Arturo Gutiérrez Díaz-Guerra - <arturo.gutierrez@gmail.com>
 
-<a href="https://twitter.com/morpheo17">
+<a href="https://twitter.com/arturogdg">
   <img alt="Follow me on Twitter" src="http://imageshack.us/a/img812/3923/smallth.png" />
 </a>
 <a href="http://www.linkedin.com/in/arturogutierrezdiazguerra">
