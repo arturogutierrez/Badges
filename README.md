@@ -73,7 +73,7 @@ Or into your build.gradle
 
 ```groovy
 dependencies {
-    compile 'com.github.arturogutierrez:badges:1.0.3@aar'
+    compile 'com.github.arturogutierrez:badges:1.0.5@aar'
 }
 ```
 
